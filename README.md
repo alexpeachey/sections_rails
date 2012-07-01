@@ -172,12 +172,15 @@ To automatically run unit tests when files change, run
 $ bundle exec guard -c
 ```
 
-# Missing features
+## Missing features
 
-_Sections_rails_ is in prototypical development and far from complete. Missing features are:
+_Sections_rails_ is far from complete. Some missing things are:
 
-* Better support for unit testing.
 * Support for multiple application assets, for example page-specific compiled asset files instead of one global one.
 * Support for serverside controller logic for sections, for example by integrating with https://github.com/apotonick/cells.
 * More natural integration into the asset pipeline.
 
+## Authors
+
+* [Kevin Goslar](https://github.com/kevgo)
+* [Serge Zinin](https://github.com/zininserge)
