@@ -118,18 +118,18 @@ You can also provide a block to the section, which can be included into the part
 You can provide a block to the section, like so:
 
 ```erb
-<%= section :section_with_block do %>
+<%= section :info_window do %>
   <h1>  Elaborate </h1>
   <div> Block     </div>
   <p>   content   </p>
 <% end %>
 ```
 
-This block can be included into the partial:
+This block can be included into the partial of the section using `yield`:
 ```erb
 Partial content...
 <%= yield %>
-Partial content...
+More partial content...
 ```
 
 This allows to define the content of parts of the section dynamically in the calling view, using view helper methods.
