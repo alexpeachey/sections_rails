@@ -15,22 +15,26 @@ and should be removed when the navigation menu is removed from the site.
 Traditionally, these files are defined in this directory structure:
 
 ```
-/app/assets/javascripts/menu.js
+/app/assets/images/background.gif
+           /javascripts/menu.js
                        /templates/entry.jst.ejs
            /stylesheets/menu.css
     /views/shared/_menu.html.erb
-/doc/menu.md
+/doc/menu.markdown
+/public/about_us.pdf
 /spec/javascripts/menu_spec.js
 ```
 
 _Sections_rails_ allows to define these assets together, as a _section_ inside the _/app_ folder:
 
     /app/sections/menu/_menu.html.erb     # Server side template.
+                       about_us.pdf       # Static asset used in this section.
+                       background.gif     # Image resource for this section.
+                       entry.jst.ejs      # Client-side template.
                        menu.css           # Styling for the menu.
                        menu.js            # Logic for the menu.
-                       readme.md          # Documentation.
-                       entry.jst.ejs      # Client-side template.
                        menu_spec.coffee   # Unit test for logic of this template.
+                       readme.md          # Documentation.
 
 To embed this menu and all its assets into a page, simply do this in your view:
 
