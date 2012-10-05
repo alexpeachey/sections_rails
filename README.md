@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/kevgo/sections_rails" target="_blank"><img src="https://codeclimate.com/badge.png" /></a>
+
 _SectionsRails_ adds a component-oriented infrastructure to the view layer of Ruby on Rails.
 
 In short, the DOM, styling, behavior, tests, and other data for dedicated pieces of a web page are defined together, in one directory,
