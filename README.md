@@ -1,4 +1,4 @@
-<a href="https://codeclimate.com/github/kevgo/sections_rails" target="_blank"><img src="https://codeclimate.com/badge.png" /></a>
+# Sections for Rails <a href="https://codeclimate.com/github/kevgo/sections_rails" target="_blank"><img src="https://codeclimate.com/badge.png" /></a>
 
 _SectionsRails_ adds a component-oriented infrastructure to the view layer of Ruby on Rails.
 
@@ -7,7 +7,7 @@ rather than spread across _app/views_, _app/assets/javascripts_, _app/assets/sty
 This makes it easier to work on those pieces, makes them more reusable, and large code bases more managable.
 
 
-# Example
+## Example
 
 Let's take the navigation menu within a web site as an example section.
 It consists of certain HTML, CSS, and JavaScript code as well as image resources.
@@ -53,7 +53,7 @@ The gem source comes with a bundled example Rails app in the _demo/_ directory.
 It provides several working examples of sections in action in _views/demos/index.html.erb_.
 
 
-# Installation
+## Installation
 
 In your Gemfile:
 
@@ -85,7 +85,7 @@ Make sure you require them from your main _application.js_ and _application.css_
 They are used only when running _rake assets:precompile_ during deployment, and should be checked in and stay the way they are.
 
 
-# Usage
+## Usage
 
 To use the "hello_world" section created by the sections generator, simply add it to the view:
 
@@ -100,7 +100,7 @@ In this case, the _sections_ helper creates an empty div in the view.
 <div class="hello_world"></div>
 ```
 
-## Options
+### Options
 
 By default, a section automatically includes partials, css, and js files with the section name if they exist.
 This convention can be overridden. The following example renders the _hello_world_ section with a different partial, with no stylesheet,
@@ -119,7 +119,7 @@ It is also possible to provide parameters to the rendered partial.
 You can also provide a block to the section, which can be included into the partial by saying
 
 
-## Inline blocks for sections.
+### Inline blocks for sections.
 
 You can provide a block to the section, like so:
 
@@ -141,7 +141,7 @@ More partial content...
 This allows to define the content of parts of the section dynamically in the calling view, using view helper methods.
 
 
-## Creating new sections.
+### Creating new sections.
 
 To create a new section, simply create a new folder under _/app/sections_ and add the partials, css, js, jst, and test files for this section.
 Alternatively, run the provided generator:
@@ -153,20 +153,21 @@ $ rails generate section admin/chart
 This creates a folder _/app/sections/admin/chart_ with a scaffold for a new section.
 
 
-# Unit tests for sections
+## Unit tests for sections
 
 Sections should also contain unit test files for the section.
 
-## Unit testing using Konacha
+
+### Unit testing using Konacha
 
 _This feature is still under development._
 
 To test them for example using [Konacha](https://github.com/jfirebaugh/konacha), create a symlink to _app/sections_ in _spec/javascript_.
 
 
-# Development
+## Development
 
-## Unit tests
+### Unit tests
 
 ```bash
 $ rake
@@ -178,7 +179,7 @@ To automatically run unit tests when files change, run
 $ bundle exec guard -c
 ```
 
-## Missing features
+### Missing features
 
 _Sections_rails_ is far from complete. Some missing things are:
 
@@ -186,7 +187,8 @@ _Sections_rails_ is far from complete. Some missing things are:
 * Support for serverside controller logic for sections, for example by integrating with https://github.com/apotonick/cells.
 * More natural integration into the asset pipeline.
 
-## Authors
+
+### Authors
 
 * [Kevin Goslar](https://github.com/kevgo)
 * [Serge Zinin](https://github.com/zininserge)
