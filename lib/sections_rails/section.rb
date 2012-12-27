@@ -58,7 +58,7 @@ module SectionsRails
     # The path for accessing the partial on the filesystem.
     # Example: '
     def partial_filepath partial_filename = nil
-      File.join(SectionsRails.config.path, directory_name,filename, "_#{partial_filename or filename}").gsub(/^\//, '')
+      File.join(SectionsRails.config.path, directory_name, filename, "_#{partial_filename or filename}").gsub(/^\//, '')
     end
 
     # For including the partial into views.
