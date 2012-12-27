@@ -51,9 +51,7 @@ describe SectionsRails::Section do
     end
 
     it 'returns nil if there is no known JS asset file' do
-      SectionsRails.config.js_extensions.each do |ext|
-        File.should_receive(:exists?).with("app/sections/folder/section/section.#{ext}").and_return(false)
-      end
+      File.stub(:exists?).and_return(false)
       subject.find_js_includepath.should be_nil
     end
 
@@ -85,8 +83,7 @@ describe SectionsRails::Section do
     end
 
     it "returns nil if it doesn't find any assets" do
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
+      File.stub(:exists?).and_return(false)
       subject.find_partial_renderpath.should be_false
     end
 
@@ -106,8 +103,7 @@ describe SectionsRails::Section do
     end
 
     it "returns nil if it doesn't find any assets" do
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
+      File.stub(:exists?).and_return(false)
       subject.find_partial_filepath.should be_false
     end
 
@@ -127,7 +123,7 @@ describe SectionsRails::Section do
     end
 
     it "returns false if the files don't exist" do
-      File.should_receive(:exists?).with("app/sections/folder/section/section.one").and_return(false)
+      File.stub(:exists?).and_return(false)
       subject.has_asset?(['one']).should be_false
     end
 
@@ -146,7 +142,7 @@ describe SectionsRails::Section do
       subject.has_default_js_asset?.should be_false
     end
 
-    it 'returns TRUE if it JS file types' do
+    it 'returns TRUE if it has JS file types' do
       File.stub!(:exists?).and_return(true)
       subject.has_default_js_asset?.should be_true
     end
