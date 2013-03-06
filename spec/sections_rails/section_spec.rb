@@ -52,24 +52,24 @@ describe SectionsRails::Section do
 
     it 'returns nil if there is no known JS asset file' do
       File.stub(:exists?).and_return(false)
-      subject.find_js_includepath.should be_nil
+      expect(subject.find_js_includepath).to be_nil
     end
 
     it 'returns the asset path of the JS asset' do
       File.stub(:exists?).and_return(true)
-      subject.find_js_includepath.should == 'folder/section/section'
+      expect(subject.find_js_includepath).to eql 'folder/section/section'
     end
 
     it 'returns nil if the file exists but the section has JS assets disabled' do
       File.stub(:exists?).and_return(true)
       section = SectionsRails::Section.new 'folder/section', nil, js: false
-      section.find_js_includepath.should be_nil
+      expect(section.find_js_includepath).to be_nil
     end
 
     it 'returns the custom JS asset path if one is set' do
       File.stub(:exists?).and_return(true)
       section = SectionsRails::Section.new 'folder/section', nil, js: 'custom'
-      section.find_js_includepath.should == 'custom'
+      expect(section.find_js_includepath).to eql 'custom'
     end
   end
 
@@ -84,12 +84,12 @@ describe SectionsRails::Section do
 
     it "returns nil if it doesn't find any assets" do
       File.stub(:exists?).and_return(false)
-      subject.find_partial_renderpath.should be_false
+      expect(subject.find_partial_renderpath).to be_false
     end
 
     it "returns the path for rendering of the asset if it finds one" do
       File.stub(:exists?).and_return(true)
-      subject.find_partial_renderpath.should == 'folder/section/section'
+      expect(subject.find_partial_renderpath).to eql 'folder/section/section'
     end
   end
 
@@ -104,12 +104,12 @@ describe SectionsRails::Section do
 
     it "returns nil if it doesn't find any assets" do
       File.stub(:exists?).and_return(false)
-      subject.find_partial_filepath.should be_false
+      expect(subject.find_partial_filepath).to be_false
     end
 
     it "returns the absolute path to the asset if it finds one" do
       File.stub(:exists?).and_return(true)
-      subject.find_partial_filepath.should == 'app/sections/folder/section/_section.html.erb'
+      expect(subject.find_partial_filepath).to eql 'app/sections/folder/section/_section.html.erb'
     end
   end
 
@@ -124,7 +124,7 @@ describe SectionsRails::Section do
 
     it "returns false if the files don't exist" do
       File.stub(:exists?).and_return(false)
-      subject.has_asset?(['one']).should be_false
+      expect(subject.has_asset?(['one'])).to be_false
     end
 
     it "returns true if one of the given extensions matches a file" do
@@ -144,7 +144,7 @@ describe SectionsRails::Section do
 
     it 'returns TRUE if it has JS file types' do
       File.stub!(:exists?).and_return(true)
-      subject.has_default_js_asset?.should be_true
+      expect(subject.has_default_js_asset?).to be_true
     end
   end
 
@@ -155,7 +155,7 @@ describe SectionsRails::Section do
     end
 
     it 'returns nil if no partial exists' do
-      SectionsRails::Section.new('partial_content/no_partial').partial_content.should be_nil
+      expect(SectionsRails::Section.new('partial_content/no_partial').partial_content).to be_nil
     end
   end
 
@@ -167,19 +167,19 @@ describe SectionsRails::Section do
     end
 
     it 'returns an empty array if there is no partial' do
-      SectionsRails::Section.new('referenced_sections/no_partial').referenced_sections.should == []
+      expect(SectionsRails::Section.new('referenced_sections/no_partial').referenced_sections).to eql []
     end
 
     it "returns an empty array if the partial doesn't reference any sections" do
-      SectionsRails::Section.new('referenced_sections/no_referenced_sections').referenced_sections.should == []
+      expect(SectionsRails::Section.new('referenced_sections/no_referenced_sections').referenced_sections).to eql []
     end
 
     it 'finds sections referenced by referenced sections' do
-      SectionsRails::Section.new('referenced_sections/recursive').referenced_sections.should == ['referenced_sections/recursive/one', 'referenced_sections/recursive/three', 'referenced_sections/recursive/two']
+      expect(SectionsRails::Section.new('referenced_sections/recursive').referenced_sections).to eql ['referenced_sections/recursive/one', 'referenced_sections/recursive/three', 'referenced_sections/recursive/two']
     end
 
     it 'can handle reference loops' do
-      SectionsRails::Section.new('referenced_sections/loop').referenced_sections.should == ['referenced_sections/loop', 'referenced_sections/loop/one']
+      expect(SectionsRails::Section.new('referenced_sections/loop').referenced_sections).to eql ['referenced_sections/loop', 'referenced_sections/loop/one']
     end
   end
 end

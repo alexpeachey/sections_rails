@@ -12,27 +12,27 @@ describe ImageAssetsController do
   end
 
   after :each do
-    response.should be_success
+    expect(response).to be_success
   end
 
   it 'supports GIF images' do
     get :gif
-    response.body.should have_image_tag '/assets/image_assets/foo.gif'
+    expect(response.body).to have_image_tag '/assets/image_assets/foo.gif'
   end
 
   it 'supports JPG images' do
     get :jpg
-    response.body.should have_image_tag '/assets/image_assets/foo.jpg'
+    expect(response.body).to have_image_tag '/assets/image_assets/foo.jpg'
   end
 
   it 'supports JPEG images' do
     get :jpeg
-    response.body.should have_image_tag '/assets/image_assets/foo.jpeg'
+    expect(response.body).to have_image_tag '/assets/image_assets/foo.jpeg'
   end
 
   it 'supports PNG images' do
     get :png
-    response.body.should have_image_tag '/assets/image_assets/foo.png'
+    expect(response.body).to have_image_tag '/assets/image_assets/foo.png'
   end
 end
 
