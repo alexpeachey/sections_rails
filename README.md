@@ -1,4 +1,4 @@
-# Sections for Rails <a href="https://codeclimate.com/github/kevgo/sections_rails" target="_blank"><img src="https://codeclimate.com/badge.png" /></a>
+# Sections for Rails <a href="https://codeclimate.com/github/kevgo/sections_rails" target="_blank"><img src="https://codeclimate.com/badge.png" /></a> [![Coverage Status](https://coveralls.io/repos/kevgo/sections_rails/badge.png?branch=master)](https://coveralls.io/r/kevgo/sections_rails)
 
 _SectionsRails_ adds a component-oriented infrastructure to the view layer of Ruby on Rails.
 

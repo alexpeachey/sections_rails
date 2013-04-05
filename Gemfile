@@ -7,6 +7,7 @@ gemspec
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
+gem 'coveralls', require: false
 
 group :test do
   gem 'rspec-rails'
