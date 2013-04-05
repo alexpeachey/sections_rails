@@ -1,6 +1,7 @@
+.bundle/
 .idea
 *.swp
-.bundle/
+coverage/
 Gemfile.lock
 log/*.log
 pkg/
