@@ -116,12 +116,6 @@ module SectionsRails
       nil
     end
 
-    # Returns whether this section has a template.
-    # Deprecated.
-    def has_partial?
-      @view.lookup_context.template_exists? partial_includepath
-    end
-
     # Returns the sections that this section references.
     # If 'recursive = true' is given, searches recursively for sections referenced by the referenced sections.
     # Otherwise, simply returns the sections that are referenced by this section.
