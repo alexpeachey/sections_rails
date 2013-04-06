@@ -56,32 +56,44 @@ module SectionsRails
       def render_partial result, &block
         if @options.has_key? :partial
           if @options[:partial] == :tag
-            # :partial => :tag given --> render the empty tag even if there is a partial present.
-            result << @view.content_tag(:div, '', :class => filename)
+            # :partial => :tag given
+            render_empty_tag result
           elsif @options[:partial]
-            # Custom partial name given --> render that partial.
-            if block_given?
-              result << @view.render({:layout => find_partial_renderpath(@options[:partial])}, @options[:locals], &block)
-            else
-              result << @view.render(find_partial_renderpath(@options[:partial]), @options[:locals])
-            end
+            # Custom partial name given
+            render_custom_partial  result, &block
           else
             # :partial => (false|nil) given --> render nothing.
           end
         else
-          # No :partial option given --> render the default partial.
-          partial_filepath = find_partial_filepath
-          if partial_filepath
-
-            if block_given?
-              result << @view.render(:layout => partial_includepath, :locals => @options[:locals], &block)
-            else
-              result << @view.render(:partial => partial_includepath, :locals => @options[:locals])
-            end
-          else
-            result << @view.content_tag(:div, '', :class => filename)
-          end
+          # No :partial option given
+          render_default_partial result, &block
         end
+      end
+
+      def render_custom_partial result, &block
+        if block_given?
+          result << @view.render({:layout => find_partial_renderpath(@options[:partial])}, @options[:locals], &block)
+        else
+          result << @view.render(find_partial_renderpath(@options[:partial]), @options[:locals])
+        end
+      end
+
+      def render_default_partial result, &block
+        partial_filepath = find_partial_filepath
+        if partial_filepath
+
+          if block_given?
+            result << @view.render(:layout => partial_includepath, :locals => @options[:locals], &block)
+          else
+            result << @view.render(:partial => partial_includepath, :locals => @options[:locals])
+          end
+        else
+          result << @view.content_tag(:div, '', :class => filename)
+        end
+      end
+
+      def render_empty_tag result
+        result << @view.content_tag(:div, '', :class => filename)
       end
     end
   end
