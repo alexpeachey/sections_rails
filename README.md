@@ -158,9 +158,7 @@ To run your section tests using [Konacha](https://github.com/jfirebaugh/konacha)
 Feel free to send unit-tested pull requests! The unit tests of this project are run using `rake`.
 
 
-### Missing features
-
-Sections_rails is far from complete. Some missing things are:
+### Roadmap
 
 * Support for multiple application assets, for example page-specific compiled asset files instead of one global one.
 * Support for serverside controller logic for sections, for example by integrating with https://github.com/apotonick/cells.
