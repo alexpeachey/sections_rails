@@ -17,22 +17,22 @@ describe ImageAssetsController do
 
   it 'supports GIF images' do
     get :gif
-    expect(response.body).to have_image_tag '/assets/image_assets/foo.gif'
+    expect(response.body).to have_image_tag '/assets/image_assets/gif/pic.gif'
   end
 
   it 'supports JPG images' do
     get :jpg
-    expect(response.body).to have_image_tag '/assets/image_assets/foo.jpg'
+    expect(response.body).to have_image_tag '/assets/image_assets/jpg/pic.jpg'
   end
 
   it 'supports JPEG images' do
     get :jpeg
-    expect(response.body).to have_image_tag '/assets/image_assets/foo.jpeg'
+    expect(response.body).to have_image_tag '/assets/image_assets/jpeg/pic.jpeg'
   end
 
   it 'supports PNG images' do
     get :png
-    expect(response.body).to have_image_tag '/assets/image_assets/foo.png'
+    expect(response.body).to have_image_tag '/assets/image_assets/png/pic.png'
   end
 end
 
