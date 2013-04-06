@@ -60,11 +60,11 @@ The generator
 
 *  creates a new folder __/app/sections__, in which you put the source code for the different sections.
 
-*  adds the folder _/app/sections_ to the asset pipeline by inserting this line into your _application.rb_ file:
+*  adds the folder /app/sections to the asset pipeline by inserting this line into your _application.rb_ file:
 
         config.assets.paths << 'app/sections'
 
-*  optionally creates a demo section called _hello_world_ that you can try out as described below.
+*  optionally creates a demo section called __hello_world__ that you can try out as described below.
 
 
 The current implementation requires two empty asset container files: __application_sections.js__ and __application_sections.css__.
@@ -160,7 +160,7 @@ Feel free to send unit-tested pull requests! The unit tests of this project are 
 
 ### Missing features
 
-_Sections_rails_ is far from complete. Some missing things are:
+Sections_rails is far from complete. Some missing things are:
 
 * Support for multiple application assets, for example page-specific compiled asset files instead of one global one.
 * Support for serverside controller logic for sections, for example by integrating with https://github.com/apotonick/cells.
