@@ -59,34 +59,55 @@ module SectionsRails
 
       # Renders the CSS for this section.
       def render_css_assets result
-        if @options.has_key? :css
-          if @options[:css]
-            # Custom filename for :css given --> include the given CSS file.
-            result << @view.stylesheet_link_tag(File.join(folder_includepath, @options[:css]))
-          else
-            # ":css => false" given --> don't include any CSS.
-          end
-        else
-          # No option for :css given --> include the default stylesheet.
-          css_includepath = find_css_includepath
-          result << @view.stylesheet_link_tag(css_includepath) if css_includepath
-        end
+
+        # Handle default case if no options given.
+        return render_default_css_asset(result) unless @options.has_key? :css
+
+        # Do nothing if 'css: nil' given.
+        return unless @options[:css]
+
+        render_custom_css_asset @options[:css], result
       end
+
+
+      # Renders the CSS asset with the given filename.
+      def render_custom_css_asset filename, result
+        result << @view.stylesheet_link_tag(File.join(folder_includepath, @options[:css]))
+      end
+
+
+      # Renders the default CSS asset.
+      def render_default_css_asset result
+        css_includepath = find_css_includepath
+        result << @view.stylesheet_link_tag(css_includepath) if css_includepath
+      end
+
 
       # Renders the JS for this section.
       def render_js_assets result
-        if @options.has_key? :js
-          if @options[:js]
-            result << @view.javascript_include_tag(File.join(folder_includepath, @options[:js]))
-          else
-            # :js => (false|nil) given --> don't include any JS.
-          end
-        else
-          # No :js configuration option given --> include the default script.
-          js_includepath = find_js_includepath
-          result << @view.javascript_include_tag(js_includepath) if js_includepath
-        end
+
+        # Render default asset if no option given.
+        return render_default_js_asset(result) unless @options.has_key? :js
+
+        # Do nothing if 'js: nil' given.
+        return unless @options[:js]
+
+        render_custom_js_asset @options[:js], result
       end
+
+
+      # Renders the default JS asset.
+      def render_default_js_asset result
+        js_includepath = find_js_includepath
+        result << @view.javascript_include_tag(js_includepath) if js_includepath
+      end
+
+
+      # Renders the JS asset with the given filename.
+      def render_custom_js_asset filename, result
+        result << @view.javascript_include_tag(File.join(folder_includepath, filename))
+      end
+
     end
   end
 end
