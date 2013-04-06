@@ -114,40 +114,6 @@ describe SectionsRails::Section do
   end
 
 
-  describe "#has_asset?" do
-
-    it "tries filename variations with all given extensions" do
-      File.should_receive(:exists?).with("app/sections/folder/section/section.one").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/section.two").and_return(false)
-      subject.has_asset? ['one', 'two']
-    end
-
-    it "returns false if the files don't exist" do
-      File.stub(:exists?).and_return(false)
-      expect(subject.has_asset?(['one'])).to be_false
-    end
-
-    it "returns true if one of the given extensions matches a file" do
-      File.should_receive(:exists?).with("app/sections/folder/section/section.one").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/section.two").and_return(true)
-      subject.has_asset?(['one', 'two']).should be_true
-    end
-  end
-
-  describe "#has_default_js_asset" do
-    it 'looks for all different types of JS file types' do
-      File.should_receive(:exists?).with("app/sections/folder/section/section.js").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/section.coffee").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/section.js.coffee").and_return(false)
-      subject.has_default_js_asset?.should be_false
-    end
-
-    it 'returns TRUE if it has JS file types' do
-      File.stub!(:exists?).and_return(true)
-      expect(subject.has_default_js_asset?).to be_true
-    end
-  end
-
   describe 'partial_content' do
     it 'returns the content of the partial if one exists' do
       SectionsRails::Section.new('partial_content/erb_partial').partial_content.strip.should == 'ERB partial content'
