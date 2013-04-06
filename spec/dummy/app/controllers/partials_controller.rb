@@ -20,4 +20,7 @@ class PartialsController < ApplicationController
 
   def partial_with_block
   end
+
+  def tag_option
+  end
 end

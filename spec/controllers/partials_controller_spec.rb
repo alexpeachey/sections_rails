@@ -26,6 +26,13 @@ describe PartialsController do
     end
   end
 
+  context 'partial with tag option given' do
+    it 'renders an empty tag even though the section contains a partial' do
+      get :tag_option
+      expect(response.body.strip).to eql '<div class="tag_option"></div>'
+    end
+  end
+
   describe 'providing a custom partial name' do
     before :each do
       get :custom_partial
