@@ -57,18 +57,11 @@ module SectionsRails
 
     # Renders this section, i.e. returns the HTML for this section.
     def render &block
-      result = []
-
-      # Check if section exists.
       raise "Section #{folder_filepath} doesn't exist." unless Dir.exists? folder_filepath
 
-      # Include assets only for development mode.
-      if Rails.env != 'production'
-        render_assets result
-      end
-
+      result = []
+      render_assets result if Rails.env != 'production'
       render_partial result, &block
-
       result.join("\n").html_safe
     end
   end
