@@ -1,4 +1,4 @@
 Dummy::Application.routes.draw do
-  match ':controller(/:action)'
+  get ':controller(/:action)'
 end
 

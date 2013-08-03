@@ -4,9 +4,9 @@ describe ImageAssetsController do
   render_views
 
   before :each do
-    RSpec::Matchers.define :have_image_tag do |tag_name|
+    RSpec::Matchers.define :have_image_tag do |image_path|
       match do |body|
-        body =~ Regexp.new("<img.*src=\"#{tag_name}\"")
+        body =~ Regexp.new("<img.*src=\"#{image_path}\"")
       end
     end
   end
