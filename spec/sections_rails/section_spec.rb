@@ -143,7 +143,7 @@ describe SectionsRails::Section do
     end
 
     it 'returns TRUE if it has JS file types' do
-      File.stub!(:exists?).and_return(true)
+      File.stub(:exists?).and_return(true)
       expect(subject.has_default_js_asset?).to be_true
     end
   end
