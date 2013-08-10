@@ -1,5 +1,7 @@
-require 'coveralls'
-Coveralls.wear!
+unless ENV['COVERALLS_CONFIG'] == 'nocoveralls'
+  require 'coveralls'
+  Coveralls.wear!
+end
 
 require 'rubygems'
 require 'bundler/setup'
