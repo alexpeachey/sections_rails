@@ -79,6 +79,7 @@ describe SectionsRails::Section do
     it 'looks for all known types of partials' do
       File.should_receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
       File.should_receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
+      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.slim").and_return(false)
       subject.find_partial_renderpath
     end
 
@@ -99,6 +100,7 @@ describe SectionsRails::Section do
     it 'looks for all known types of partials' do
       File.should_receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
       File.should_receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
+      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.slim").and_return(false)
       subject.find_partial_filepath
     end
 
