@@ -2,36 +2,15 @@ unless ENV['COVERALLS_CONFIG'] == 'nocoveralls'
   require 'coveralls'
   Coveralls.wear!
 end
+ENV["RAILS_ENV"] ||= 'test'
 
-require 'rubygems'
-require 'bundler/setup'
-require 'rails'
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-
-require 'rspec'
 require 'rspec/rails'
+require 'rspec/autorun'
 require 'sections_rails'
-
-# Configure Rails Environment
-ENV["RAILS_ENV"] = "test"
-#Rails = Hashie::Mash.new({:env => 'test'})
-
-# Load support files
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 
 RSpec.configure do |config|
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+  config.infer_base_class_for_anonymous_controllers = false
   config.mock_with :rspec
-
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-#  config.use_transactional_fixtures = true
 end
