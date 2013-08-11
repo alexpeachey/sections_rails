@@ -17,6 +17,11 @@ describe PartialsController do
       get :haml_section
       expect(response.body.strip).to eql 'HAML partial content'
     end
+
+    it 'allows to use SLIM partials' do
+      get :slim_section
+      expect(response.body.strip).to eql 'SLIM partial content'
+    end
   end
 
   context 'no partial options given' do

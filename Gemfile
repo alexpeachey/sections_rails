@@ -9,6 +9,9 @@ group :test do
   # jquery-rails is used by the dummy application
   gem "jquery-rails"
   gem 'coveralls', require: false
+  gem 'rspec-rails'
+  gem 'haml'
+  gem 'slim'
 end
 
 # Declare any dependencies that are still in development here instead of in

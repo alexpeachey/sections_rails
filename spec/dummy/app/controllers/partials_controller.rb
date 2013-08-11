@@ -6,6 +6,9 @@ class PartialsController < ApplicationController
   def haml_section
   end
 
+  def slim_section
+  end
+
   def custom_partial
   end
 
