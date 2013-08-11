@@ -11,6 +11,8 @@ gem 'coveralls', require: false
 
 group :test do
   gem 'rspec-rails'
+  gem 'haml'
+  gem 'slim'
 end
 
 # Declare any dependencies that are still in development here instead of in
