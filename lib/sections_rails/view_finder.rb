@@ -19,14 +19,16 @@ module SectionsRails
     end
 
     # Used for :prepare_pages. Not used right now.
-    def self.parse_views views
-      result = {}
-      views_to_parse.each do |view_to_parse|
-        view_text = IO.read(File.join root, view_to_parse)
-        result[view_to_parse] = find_sections_in_text view_text
-      end
-      result
-    end
+    # def self.parse_views views
+    #   result = {}
+    #   views_to_parse.each do |view_to_parse|
+    #     puts root
+
+    #     view_text = IO.read(File.join root, view_to_parse)
+    #     result[view_to_parse] = find_sections_in_text view_text
+    #   end
+    #   result
+    # end
 
   end
 end

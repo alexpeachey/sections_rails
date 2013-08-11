@@ -6,7 +6,7 @@ describe ScriptAssetsController do
   before :each do
     RSpec::Matchers.define :have_script_tag do |tag_name|
       match do |body|
-        body =~ Regexp.new("<script.*src=\"#{tag_name}\".*<\/script>")
+        body =~ Regexp.new("<script src=.#{tag_name}")
       end
     end
   end

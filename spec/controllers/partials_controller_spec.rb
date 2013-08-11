@@ -26,6 +26,13 @@ describe PartialsController do
     end
   end
 
+  context 'partial with tag option given' do
+    it 'renders an empty tag even though the section contains a partial' do
+      get :tag_option
+      expect(response.body.strip).to eql '<div class="tag_option"></div>'
+    end
+  end
+
   describe 'providing a custom partial name' do
     before :each do
       get :custom_partial
@@ -71,9 +78,16 @@ describe PartialsController do
   end
 
   describe 'partial with block' do
-    it 'allows to render the block inside the partial' do
+    it 'renders the block inside the partial' do
       get :partial_with_block
-      expect(response.body.strip).to eql "partial line 1.\nblock content.\npartial line 2."
+      expect(response.body.strip).to match /partial line 1.\n+block content.\n+partial line 2./
+    end
+  end
+
+  describe 'partial with custom partial name and block' do
+    it 'renders the block inside the custom partial' do
+      get :custom_partial_with_block
+      expect(response.body.strip).to match /custom partial line 1.\n+\s*block content\n+custom partial line 2./
     end
   end
 end

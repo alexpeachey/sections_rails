@@ -6,7 +6,7 @@ describe StyleAssetsController do
   before :each do
     RSpec::Matchers.define :have_style_tag do |tag_name|
       match do |body|
-        body =~ Regexp.new("<link.*href=\"#{tag_name}\".*>")
+        body =~ Regexp.new("<link href=\"#{tag_name}")
       end
     end
   end
