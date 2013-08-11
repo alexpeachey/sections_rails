@@ -78,7 +78,7 @@ describe PartialsController do
   describe 'partial with block' do
     it 'allows to render the block inside the partial' do
       get :partial_with_block
-      expect(response.body.strip).to eql "partial line 1.\nblock content.\n\npartial line 2."
+      expect(response.body.strip.gsub(/\n+/, "\n")).to eql "partial line 1.\nblock content.\npartial line 2."
     end
   end
 end
