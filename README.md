@@ -153,9 +153,22 @@ Sections should also contain unit test files for the section.
 To run your section tests using [Konacha](https://github.com/jfirebaugh/konacha), create a symlink to _app/sections_ in _spec/javascript_.
 
 
+## Troubleshooting
+
+### My section contains a file that doesn't show up on production
+
+Rails sometimes doesn't precompile static files (for example images) in certain directories.
+To fix this, for example if your sections contain GIF files, tell Rails to precompile files of this type
+by adding this line to your `config/production.rb` file:
+
+```ruby
+config.assets.precompile += %w( *.gif )
+```
+
+
 ## How to contribute
 
-Feel free to send unit-tested pull requests! The unit tests of this project are run using `rake`.
+Send unit-tested pull requests! The unit tests of this project are run using `rake`.
 
 
 ### Roadmap
