@@ -124,7 +124,7 @@ Sections can contain additional assets, for example font or image files. You hav
 <%= image_tag 'layout/logo.png' %>
 ```
 
-Make sure you add custom extensions like *png* to the `config.assets.precompile` setting in 'config/environments/production.rb', otherwise the asset pipeline will ignore them.
+Make sure you add custom extensions like *png* to the `config.assets.precompile` setting in `config/environments/production.rb`, otherwise the asset pipeline will ignore them.
 
 ### Providing parameters to the partial
 
