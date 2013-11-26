@@ -118,7 +118,7 @@ Sections can be told not not include their css or js file when rendered.
 
 ### Using additional assets in sections
 
-Sections can contain additional assets, like font or image files. You have to provide the full asset path to use them. For example, to show a file *logo.png* that is stored in a section called *layout*:
+Sections can contain additional assets, like font or image files. You have to provide the full asset path to use them, even from within the section in which they are stored. For example, to show a file *logo.png* that is stored in a section called *layout*:
 
 ```erb
 <%= image_tag 'layout/logo.png' %>
