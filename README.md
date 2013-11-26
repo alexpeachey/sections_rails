@@ -118,13 +118,13 @@ Sections can be told not not include their css or js file when rendered.
 
 ### Using additional assets in sections
 
-Sections can contain additional assets, for example font or image files. You have to provide the full asset path to use them. For example, if you have a section called *layout*, and it contains a file *logo.png*, you would do:
+Sections can contain additional assets, like font or image files. You have to provide the full asset path to use them. For example, to show a file *logo.png* that is stored in a section called *layout*:
 
 ```erb
 <%= image_tag 'layout/logo.png' %>
 ```
 
-Make sure you add custom extensions like *png* to the `config.assets.precompile` setting in `config/environments/production.rb`, otherwise the asset pipeline will ignore them.
+Make sure you add custom extensions like *png* to the `config.assets.precompile` setting in *config/environments/production.rb*, otherwise the asset pipeline will ignore them.
 
 ### Providing parameters to the partial
 
