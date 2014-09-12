@@ -67,10 +67,12 @@ describe StyleAssetsController do
 
     before :each do
       Rails.env = "production"
+      Rails.application.config.assets.compile = false
     end
 
     after :each do
       Rails.env = "test"
+      Rails.application.config.assets.compile = true
     end
 
     it "doesn't render style assets" do

@@ -60,7 +60,7 @@ module SectionsRails
       raise "Section #{folder_filepath} doesn't exist." unless Dir.exists? folder_filepath
 
       result = []
-      render_assets result if Rails.env != 'production'
+      render_assets result if Rails.application.config.assets.compile
       render_partial result, &block
       result.join("\n").html_safe
     end
