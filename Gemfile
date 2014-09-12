@@ -10,6 +10,7 @@ group :test do
   gem "jquery-rails"
   gem 'coveralls', require: false
   gem 'rspec-rails'
+  gem 'rspec-its'
   gem 'haml'
   gem 'slim'
 end

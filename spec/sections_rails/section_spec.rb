@@ -85,7 +85,7 @@ describe SectionsRails::Section do
 
     it "returns nil if it doesn't find any assets" do
       File.stub(:exists?).and_return(false)
-      expect(subject.find_partial_renderpath).to be_false
+      expect(subject.find_partial_renderpath).to be_falsy
     end
 
     it "returns the path for rendering of the asset if it finds one" do
@@ -106,7 +106,7 @@ describe SectionsRails::Section do
 
     it "returns nil if it doesn't find any assets" do
       File.stub(:exists?).and_return(false)
-      expect(subject.find_partial_filepath).to be_false
+      expect(subject.find_partial_filepath).to be_falsy
     end
 
     it "returns the absolute path to the asset if it finds one" do
