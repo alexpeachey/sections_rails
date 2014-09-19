@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe SectionsRails::Section do
-  before(:each) { Rails.stub(:root).and_return('/rails_root/') }
+  before(:each) { allow(Rails).to receive(:root).and_return('/rails_root/') }
   subject { SectionsRails::Section.new 'folder/section', nil }
 
   describe 'initialize' do
@@ -25,10 +25,10 @@ describe SectionsRails::Section do
       its(:asset_filepath)  { should == 'app/sections/folder/section/section' }
       its(:asset_includepath)  { should == 'folder/section/section' }
       its(:partial_filepath)  { should == 'app/sections/folder/section/_section' }
-      it { subject.partial_filepath('foo').should == 'app/sections/folder/section/_foo' }
+      it { expect(subject.partial_filepath('foo')).to eq 'app/sections/folder/section/_foo' }
       its(:partial_includepath)  { should == 'folder/section/section' }
       its(:partial_renderpath)  { should == 'folder/section/section' }
-      it { subject.partial_renderpath('foo').should == 'folder/section/foo' }
+      it { expect(subject.partial_renderpath('foo')).to eq 'folder/section/foo' }
     end
 
     context 'section in root sections directory' do
@@ -44,30 +44,30 @@ describe SectionsRails::Section do
   describe 'find_js_includepath' do
 
     it 'tries all different JS asset file types for sections' do
-      File.should_receive(:exists?).with("app/sections/folder/section/section.js").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/section.js.coffee").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/section.coffee").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/section.js").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/section.js.coffee").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/section.coffee").and_return(false)
       subject.find_js_includepath
     end
 
     it 'returns nil if there is no known JS asset file' do
-      File.stub(:exists?).and_return(false)
+      allow(File).to receive(:exists?).and_return(false)
       expect(subject.find_js_includepath).to be_nil
     end
 
     it 'returns the asset path of the JS asset' do
-      File.stub(:exists?).and_return(true)
+      allow(File).to receive(:exists?).and_return(true)
       expect(subject.find_js_includepath).to eql 'folder/section/section'
     end
 
     it 'returns nil if the file exists but the section has JS assets disabled' do
-      File.stub(:exists?).and_return(true)
+      allow(File).to receive(:exists?).and_return(true)
       section = SectionsRails::Section.new 'folder/section', nil, js: false
       expect(section.find_js_includepath).to be_nil
     end
 
     it 'returns the custom JS asset path if one is set' do
-      File.stub(:exists?).and_return(true)
+      allow(File).to receive(:exists?).and_return(true)
       section = SectionsRails::Section.new 'folder/section', nil, js: 'custom'
       expect(section.find_js_includepath).to eql 'custom'
     end
@@ -77,19 +77,19 @@ describe SectionsRails::Section do
   describe 'find_partial_renderpath' do
 
     it 'looks for all known types of partials' do
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.slim").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/_section.html.slim").and_return(false)
       subject.find_partial_renderpath
     end
 
     it "returns nil if it doesn't find any assets" do
-      File.stub(:exists?).and_return(false)
+      allow(File).to receive(:exists?).and_return(false)
       expect(subject.find_partial_renderpath).to be_falsy
     end
 
     it "returns the path for rendering of the asset if it finds one" do
-      File.stub(:exists?).and_return(true)
+      allow(File).to receive(:exists?).and_return(true)
       expect(subject.find_partial_renderpath).to eql 'folder/section/section'
     end
   end
@@ -98,19 +98,19 @@ describe SectionsRails::Section do
   describe 'find_partial_filepath' do
 
     it 'looks for all known types of partials' do
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
-      File.should_receive(:exists?).with("app/sections/folder/section/_section.html.slim").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/_section.html.erb").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/_section.html.haml").and_return(false)
+      expect(File).to receive(:exists?).with("app/sections/folder/section/_section.html.slim").and_return(false)
       subject.find_partial_filepath
     end
 
     it "returns nil if it doesn't find any assets" do
-      File.stub(:exists?).and_return(false)
+      allow(File).to receive(:exists?).and_return(false)
       expect(subject.find_partial_filepath).to be_falsy
     end
 
     it "returns the absolute path to the asset if it finds one" do
-      File.stub(:exists?).and_return(true)
+      allow(File).to receive(:exists?).and_return(true)
       expect(subject.find_partial_filepath).to eql 'app/sections/folder/section/_section.html.erb'
     end
   end
@@ -118,8 +118,8 @@ describe SectionsRails::Section do
 
   describe 'partial_content' do
     it 'returns the content of the partial if one exists' do
-      SectionsRails::Section.new('partial_content/erb_partial').partial_content.strip.should == 'ERB partial content'
-      SectionsRails::Section.new('partial_content/haml_partial').partial_content.strip.should == 'HAML partial content'
+      expect(SectionsRails::Section.new('partial_content/erb_partial').partial_content.strip).to eq 'ERB partial content'
+      expect(SectionsRails::Section.new('partial_content/haml_partial').partial_content.strip).to eq 'HAML partial content'
     end
 
     it 'returns nil if no partial exists' do
@@ -130,8 +130,8 @@ describe SectionsRails::Section do
   describe 'referenced_sections' do
 
     it 'returns the sections that are referenced in the section partial' do
-      SectionsRails::Section.new('referenced_sections/erb_partial').referenced_sections.should == ['one', 'two/three']
-      SectionsRails::Section.new('referenced_sections/haml_partial').referenced_sections.should == ['one', 'two/three']
+      expect(SectionsRails::Section.new('referenced_sections/erb_partial').referenced_sections).to eq ['one', 'two/three']
+      expect(SectionsRails::Section.new('referenced_sections/haml_partial').referenced_sections).to eq ['one', 'two/three']
     end
 
     it 'returns an empty array if there is no partial' do
