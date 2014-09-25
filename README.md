@@ -1,4 +1,8 @@
-# Sections for Rails [![Build Status](https://travis-ci.org/kevgo/sections_rails.png?branch=master)](https://travis-ci.org/kevgo/sections_rails) [![Code Climate](https://codeclimate.com/github/kevgo/sections_rails.png)](https://codeclimate.com/github/kevgo/sections_rails) [![Coverage Status](https://coveralls.io/repos/kevgo/sections_rails/badge.png?branch=master)](https://coveralls.io/r/kevgo/sections_rails) [![Dependency Status](https://gemnasium.com/kevgo/sections_rails.png)](https://gemnasium.com/kevgo/sections_rails)
+# Sections for Rails
+[![Build Status](https://travis-ci.org/kevgo/sections_rails.svg?branch=master)](https://travis-ci.org/kevgo/sections_rails)
+[![Code Climate](https://codeclimate.com/github/kevgo/sections_rails.svg)](https://codeclimate.com/github/kevgo/sections_rails)
+[![Coverage Status](https://img.shields.io/coveralls/kevgo/sections_rails.svg)](https://coveralls.io/r/kevgo/sections_rails?branch=master)
+[![Dependency Status](https://gemnasium.com/kevgo/sections_rails.svg)](https://gemnasium.com/kevgo/sections_rails)
 
 _A component-oriented infrastructure for the view layer of Ruby on Rails applications._
 
