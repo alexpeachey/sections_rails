@@ -1,6 +1,4 @@
 .bundle/
-.idea
-*.swp
 coverage/
 Gemfile.lock
 log/*.log
