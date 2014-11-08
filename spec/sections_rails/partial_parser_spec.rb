@@ -35,6 +35,10 @@ describe SectionsRails::PartialParser do
       expect(SectionsRails::PartialParser.find_sections('    = section :alpha')).to eq ['alpha']
     end
 
+    it 'finds HAML sections after a tag' do
+      expect(SectionsRails::PartialParser.find_sections('li= section :alpha')).to eq ['alpha']
+    end
+
     it 'finds HAML sections with parameters' do
       expect(SectionsRails::PartialParser.find_sections('= section "alpha", css: false')).to eq ['alpha']
     end
