@@ -9,6 +9,7 @@ group :test do
   # jquery-rails is used by the dummy application
   gem "jquery-rails"
   gem 'coveralls', require: false
+  gem 'coffee-rails'
   gem 'rspec-rails'
   gem 'rspec-its'
   gem 'haml'
