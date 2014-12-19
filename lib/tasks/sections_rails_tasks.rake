@@ -6,16 +6,13 @@ namespace :sections do
   task :prepare do
     puts "\nPreparing sections assets:"
 
-    sections = SectionsRails::ViewFinder.find_all_views('app/views').map do |view| 
-      SectionsRails::PartialParser.find_sections(IO.read view).map do |section_name|
-        sections = SectionsRails::Section.new(section_name).referenced_sections
-        sections << section_name
-        puts "* #{section_name}: #{sections.join ', '}"
-        sections
-      end
-    end.flatten.sort.uniq
+    view_sections = find_section_references('app/views')
+    section_sections = find_section_references('app/sections')
+    decorator_sections = find_section_references('app/decorators')
+    sections = (view_sections + section_sections + decorator_sections).flatten.uniq.sort
+
     puts ''
-    
+
     # Create the require file for application.js.
     File.open "app/assets/javascripts/application_sections.js", 'w' do |file|
       sections.each do |section_name|
@@ -24,7 +21,7 @@ namespace :sections do
         file.write "//= require #{js_asset}\n" if js_asset
       end
     end
-    
+
     # Create the require file for application.css.
     File.open "app/assets/stylesheets/application_sections.css", 'w' do |file|
       file.write "/*\n"
@@ -37,24 +34,36 @@ namespace :sections do
     end
   end
 
+  def find_section_references(root)
+    return [] unless File.exist?(root)
+    SectionsRails::ViewFinder.find_all_views(root).map do |view|
+      SectionsRails::PartialParser.find_sections(IO.read view).map do |section_name|
+        sections = SectionsRails::Section.new(section_name).referenced_sections
+        sections << section_name
+        puts "* #{section_name}: #{sections.join ', '}"
+        sections
+      end
+    end.flatten.sort.uniq
+  end
+
   desc "Prepares the assets for precompilation in a setup with multiple files per page."
   task :prepare_pages do
     root = 'app/views'
 
     views = find_all_views root
     sections_per_view = parse_views views
-    
+
     # Create the require files.
     sections_per_view.each do |view, sections|
 
       # Don't do anything if there are no sections in this view.
       next if sections.blank?
-      
+
       # Don't do anything if the page has no page-specific JS file.
       root_name = view[0..-10]
       next unless File.exists? "app/pages/#{view}.js"
     end
-  end  
+  end
 
   desc 'Creates empty asset containers'
   task :reset_asset_containers do

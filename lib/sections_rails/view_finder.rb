@@ -12,6 +12,7 @@ module SectionsRails
         if File.directory? full_path
           result.concat find_all_views(full_path)
         else
+          next unless view_file['.html.'] || view_file[-3..-1] == '.rb'
           result << full_path
         end
       end

@@ -43,6 +43,30 @@ describe SectionsRails::PartialParser do
       expect(SectionsRails::PartialParser.find_sections('= section "alpha", css: false')).to eq ['alpha']
     end
 
+    it 'finds decorator sections with symbols' do
+      expect(SectionsRails::PartialParser.find_sections("h.section :alpha")).to eq ['alpha']
+    end
+
+    it 'finds decorator sections with symbols using verbose helpers' do
+      expect(SectionsRails::PartialParser.find_sections("helpers.section :alpha")).to eq ['alpha']
+    end
+
+    it 'finds decorator sections with symbols and parens' do
+      expect(SectionsRails::PartialParser.find_sections("h.section(:alpha)")).to eq ['alpha']
+    end
+
+    it 'finds decorator sections with single quotes' do
+      expect(SectionsRails::PartialParser.find_sections("h.section 'alpha'")).to eq ['alpha']
+    end
+
+    it 'finds decorator sections with double quotes' do
+      expect(SectionsRails::PartialParser.find_sections('h.section "alpha"')).to eq ['alpha']
+    end
+
+    it 'finds decorator sections with parameters' do
+      expect(SectionsRails::PartialParser.find_sections('h.section "alpha", css: false')).to eq ['alpha']
+    end
+
     it 'finds all results in the text' do
       expect(SectionsRails::PartialParser.find_sections("one <%= section 'alpha' \ntwo <%= section 'beta'")).to eq ['alpha', 'beta']
     end
